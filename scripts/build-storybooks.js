@@ -122,6 +122,7 @@ const handleExamples = async (deployables) => {
     const out = p(['built-storybooks', d]);
     const cwd = p(['examples', d]);
 
+    await exec(`yarn`, [`install`, `--immutable`], { cwd });
     await exec(`yarn`, [`build-storybook`, `--output-dir=${out}`, '--quiet'], { cwd });
     await exec(`npx`, [`sb`, 'extract', out, `${out}/stories.json`], { cwd });
 
